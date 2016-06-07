@@ -28,7 +28,7 @@ module generic_rom_w #(
     	.DATA_WIDTH      (MEM_DATA_BITS  ), 
     	.ADDRESS_WIDTH   (MEM_ADDR_BITS  ),
     	.INIT_FILE       (INIT_FILE)
-    	) u_rom (
+    	) rom (
     	.i_clk           (i_clk         ), 
     	.i_address       (address       ),
     	.o_read_data     (read_data		)

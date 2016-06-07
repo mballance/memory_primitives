@@ -8,8 +8,8 @@
  * TODO: Add module documentation
  */
 module generic_rom #(
-			parameter int DATA_WIDTH	= 32,
 			parameter int ADDRESS_WIDTH	= 32,
+			parameter int DATA_WIDTH	= 32,
 			parameter INIT_FILE = ""
 		) (
 			input						i_clk,
@@ -21,7 +21,6 @@ module generic_rom #(
 	reg[DATA_WIDTH-1:0]				read_data;
 
 	initial begin
-//		reg[7:0] tmp[(2**ADDRESS_WIDTH)*(DATA_WIDTH/8)-1:0];
 		reg[7:0] tmp[(2**ADDRESS_WIDTH)*(DATA_WIDTH/8)-1:0];
 		reg[DATA_WIDTH-1:0] data_tmp;
 		int i, j;
