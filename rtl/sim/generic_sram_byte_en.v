@@ -44,6 +44,7 @@ module generic_sram_byte_en
 #(
 parameter DATA_WIDTH    = 128,
 parameter ADDRESS_WIDTH = 7,
+parameter INIT_FILE = "",
 parameter READ_DATA_REGISTERED = 1
 )
 
@@ -71,6 +72,13 @@ generate
 		assign o_read_data = mem[address_r];
 	end
 endgenerate
+
+	initial begin
+		if (INIT_FILE != "") begin
+			$display("Initializing SRAM from %s", INIT_FILE);
+			$readmemh(INIT_FILE, mem);
+		end
+	end
 
 always @(posedge i_clk) begin
     // read

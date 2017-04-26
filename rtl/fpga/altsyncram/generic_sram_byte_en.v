@@ -6,6 +6,7 @@
 module generic_sram_byte_en #(
 		parameter reg[7:0]      DATA_WIDTH = 8'd128,
 		parameter reg[7:0]      ADDRESS_WIDTH = 8'd7,
+		parameter 				INIT_FILE="",
 		parameter DEVICE_FAMILY=`ALTERA_DEVICE_FAMILY
 		) (
 		input                           i_clk,
@@ -21,6 +22,7 @@ module generic_sram_byte_en #(
         		.byte_size(8),
         		.clock_enable_input_a("BYPASS"),
         		.clock_enable_output_a("BYPASS"),
+        		.init_file(INIT_FILE),
         		.intended_device_family(DEVICE_FAMILY),
         		.lpm_hint("ENABLE_RUNTIME_MOD=NO"),
         		.lpm_type("altsyncram"),
