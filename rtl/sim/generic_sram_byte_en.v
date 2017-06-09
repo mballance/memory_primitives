@@ -77,6 +77,9 @@ endgenerate
 		if (INIT_FILE != "") begin
 			$display("Initializing SRAM from %s", INIT_FILE);
 			$readmemh(INIT_FILE, mem);
+//			for (i=0; i<(1 << ADDRESS_WIDTH); i++) begin
+//				$display("'h%08h 'h%08h", i, mem[i]);
+//			end
 		end
 	end
 

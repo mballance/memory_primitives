@@ -9,7 +9,8 @@
  */
 module generic_sram_byte_en_w #(
 		parameter int			MEM_ADDR_BITS=10,
-		parameter int			MEM_DATA_BITS=32
+		parameter int			MEM_DATA_BITS=32,
+		parameter				INIT_FILE=""
 		) (
 			input							i_clk,
 			generic_sram_byte_en_if.sram	s
@@ -31,7 +32,8 @@ module generic_sram_byte_en_w #(
 	
     generic_sram_byte_en #(
     	.DATA_WIDTH      (MEM_DATA_BITS  ), 
-    	.ADDRESS_WIDTH   (MEM_ADDR_BITS  )
+    	.ADDRESS_WIDTH   (MEM_ADDR_BITS  ),
+    	.INIT_FILE       (INIT_FILE      )
     	) ram (
     	.i_clk           (i_clk         ), 
     	.i_write_data    (write_data    ),
