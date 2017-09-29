@@ -57,7 +57,7 @@ input      [DATA_WIDTH/8-1:0]   i_byte_enable,
 output     [DATA_WIDTH-1:0]     o_read_data
     );                                                     
 
-reg [DATA_WIDTH-1:0]   mem  [0:2**ADDRESS_WIDTH-1];
+reg [DATA_WIDTH-1:0]    mem  [0:2**ADDRESS_WIDTH-1];
 reg [DATA_WIDTH-1:0]	read_data_r;
 reg [ADDRESS_WIDTH-1:0]		address_r;
 reg [DATA_WIDTH-1:0]		write_data_r;
@@ -75,8 +75,15 @@ endgenerate
 
 	initial begin
 		if (INIT_FILE != "") begin
-			$display("Initializing SRAM from %s", INIT_FILE);
-			$readmemh(INIT_FILE, mem);
+//			int fd = $fopen($sformatf("%0s", INIT_FILE), "r");
+//			
+//			if (fd <= 0) begin
+//				$fatal("Failed to read file %0s in %m", INIT_FILE);
+//			end else begin
+//				$fclose(fd);
+				$display("Initializing SRAM from %s", INIT_FILE);
+				$readmemh(INIT_FILE, mem);
+//			end
 //			for (i=0; i<(1 << ADDRESS_WIDTH); i++) begin
 //				$display("'h%08h 'h%08h", i, mem[i]);
 //			end

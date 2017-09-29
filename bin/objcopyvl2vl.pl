@@ -14,6 +14,13 @@ for ($i=0; $i<=$#ARGV; $i++) {
 			$i++;
 			$offset=strtoul($ARGV[$i], 0);
 			print "offset=$offset\n";
+		} elsif ($ARGV[$i] eq "-width") {
+			$i++;
+			$bytesperword = $ARGV[$i] / 8;
+		} elsif ($ARGV[$i] eq "-be") {
+			$bigendian = 1;
+		} elsif ($ARGV[$i] eq "-le") {
+			$bigendian = 0;
 		} else {
 			die "unknown option $ARGV[$i]";
 		}
