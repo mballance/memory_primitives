@@ -102,15 +102,16 @@ always @(posedge i_clk) begin
     // write
     if (write_enable_r) begin
         for (i=0;i<DATA_WIDTH/8;i=i+1) begin
-            mem[i_address][i*8+0] = byte_enable_r[i] ? write_data_r[i*8+0] : mem[address_r][i*8+0] ;
-            mem[i_address][i*8+1] = byte_enable_r[i] ? write_data_r[i*8+1] : mem[address_r][i*8+1] ;
-            mem[i_address][i*8+2] = byte_enable_r[i] ? write_data_r[i*8+2] : mem[address_r][i*8+2] ;
-            mem[i_address][i*8+3] = byte_enable_r[i] ? write_data_r[i*8+3] : mem[address_r][i*8+3] ;
-            mem[i_address][i*8+4] = byte_enable_r[i] ? write_data_r[i*8+4] : mem[address_r][i*8+4] ;
-            mem[i_address][i*8+5] = byte_enable_r[i] ? write_data_r[i*8+5] : mem[address_r][i*8+5] ;
-            mem[i_address][i*8+6] = byte_enable_r[i] ? write_data_r[i*8+6] : mem[address_r][i*8+6] ;
-            mem[i_address][i*8+7] = byte_enable_r[i] ? write_data_r[i*8+7] : mem[address_r][i*8+7] ;
+            mem[address_r][i*8+0] = byte_enable_r[i] ? write_data_r[i*8+0] : mem[address_r][i*8+0] ;
+            mem[address_r][i*8+1] = byte_enable_r[i] ? write_data_r[i*8+1] : mem[address_r][i*8+1] ;
+            mem[address_r][i*8+2] = byte_enable_r[i] ? write_data_r[i*8+2] : mem[address_r][i*8+2] ;
+            mem[address_r][i*8+3] = byte_enable_r[i] ? write_data_r[i*8+3] : mem[address_r][i*8+3] ;
+            mem[address_r][i*8+4] = byte_enable_r[i] ? write_data_r[i*8+4] : mem[address_r][i*8+4] ;
+            mem[address_r][i*8+5] = byte_enable_r[i] ? write_data_r[i*8+5] : mem[address_r][i*8+5] ;
+            mem[address_r][i*8+6] = byte_enable_r[i] ? write_data_r[i*8+6] : mem[address_r][i*8+6] ;
+            mem[address_r][i*8+7] = byte_enable_r[i] ? write_data_r[i*8+7] : mem[address_r][i*8+7] ;
 		end              
+//		$display("%0t mem[%0d] = 'h%08h", $time, mem
     end
 end
     
