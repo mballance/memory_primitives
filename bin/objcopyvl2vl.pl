@@ -13,7 +13,6 @@ for ($i=0; $i<=$#ARGV; $i++) {
 		if ($ARGV[$i] eq "-offset") {
 			$i++;
 			$offset=strtoul($ARGV[$i], 0);
-			print "offset=$offset\n";
 		} elsif ($ARGV[$i] eq "-width") {
 			$i++;
 			$bytesperword = $ARGV[$i] / 8;
@@ -43,8 +42,6 @@ $line = <FH>;
 
 while (1) {
 
-	print "LINE: $line\n";
-	
 	unless ($line =~ /^@/) {
 		die "Unknown record: $line";
 		last;
