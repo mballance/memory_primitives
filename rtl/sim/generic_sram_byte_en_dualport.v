@@ -42,7 +42,8 @@
 
 module generic_sram_byte_en_dualport #(
 	parameter DATA_WIDTH    = 128,
-	parameter ADDRESS_WIDTH = 7
+	parameter ADDRESS_WIDTH = 7,
+	parameter INIT_FILE = ""
 	) (
 	input                           i_clk,
 	
@@ -56,14 +57,22 @@ module generic_sram_byte_en_dualport #(
 	input                           i_write_enable_b,
 	input      [ADDRESS_WIDTH-1:0]  i_address_b,
 	input      [DATA_WIDTH/8-1:0]   i_byte_enable_b,
-	output reg [DATA_WIDTH-1:0]     o_read_data_b
+	output     [DATA_WIDTH-1:0]     o_read_data_b
     );                                                     
 
 	reg [DATA_WIDTH-1:0]   mem  [0:2**ADDRESS_WIDTH-1];
+	
+	initial begin
+		if (INIT_FILE != "") begin
+			$display("Initializing SRAM %m from %s", INIT_FILE);
+			$readmemh(INIT_FILE, mem);
+		end
+	end
+	
+	// read
+	assign o_read_data_a = i_write_enable_a ? {DATA_WIDTH{1'd0}} : mem[i_address_a];
 
 	always @(posedge i_clk) begin
-		// read
-		o_read_data_a <= i_write_enable_a ? {DATA_WIDTH{1'd0}} : mem[i_address_a];
 
 		// write
 		if (i_write_enable_a) begin
