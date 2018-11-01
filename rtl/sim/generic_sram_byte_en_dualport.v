@@ -89,9 +89,12 @@ module generic_sram_byte_en_dualport #(
 		end
     end
     
+   	assign o_read_data_b = i_write_enable_b ? 
+		{DATA_WIDTH{1'd0}} : 
+		mem[i_address_b];
+
     always @(posedge i_clk) begin
     	// read
-    	o_read_data_b <= i_write_enable_b ? {DATA_WIDTH{1'd0}} : mem[i_address_b];
 
     	// write
     	if (i_write_enable_b) begin
