@@ -8,8 +8,8 @@
  * TODO: Add module documentation
  */
 module generic_rom #(
-			parameter int ADDRESS_WIDTH	= 32,
-			parameter int DATA_WIDTH	= 32,
+			parameter ADDRESS_WIDTH	= 32,
+			parameter DATA_WIDTH	= 32,
 			parameter INIT_FILE = ""
 		) (
 			input						i_clk,
@@ -20,10 +20,10 @@ module generic_rom #(
 	reg[ADDRESS_WIDTH-1:0]			read_addr;
 	reg[DATA_WIDTH-1:0]				read_data;
 
-	initial begin
+	integer i, j;
+	initial begin : INIT
 		reg[7:0] tmp[(2**ADDRESS_WIDTH)*(DATA_WIDTH/8)-1:0];
 		reg[DATA_WIDTH-1:0] data_tmp;
-		int i, j;
 	
 		// Seems Verilator (at least) doesn't read full words from the memory file
 		if (INIT_FILE != "") begin

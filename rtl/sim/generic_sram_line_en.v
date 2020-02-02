@@ -69,7 +69,7 @@ integer i;
         mem[i] = 'd0;
     end
 end else begin
-	initial begin
+	initial begin : INIT
 		integer i;
 		for (i=0;i<2**ADDRESS_WIDTH;i=i+1) begin
 	    	mem[i] = 'b1;

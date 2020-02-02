@@ -75,10 +75,12 @@ module generic_sram_byte_en_dualport #(
 
 //	generate
 //	genvar i;
-	always @(posedge i_clk) begin
+//	integer i;
+	always @(posedge i_clk) begin : WRITE
+		integer i;
 
 		// write
-			for (int i=0;i<DATA_WIDTH/8;i=i+1) begin : mw
+			for (i=0;i<DATA_WIDTH/8;i=i+1) begin : mw
 				if (i_write_enable_a) begin
 				mem[i_address_a][i*8+0] = i_byte_enable_a[i] ? i_write_data_a[i*8+0] : mem[i_address_a][i*8+0] ;
 				mem[i_address_a][i*8+1] = i_byte_enable_a[i] ? i_write_data_a[i*8+1] : mem[i_address_a][i*8+1] ;
@@ -98,12 +100,13 @@ module generic_sram_byte_en_dualport #(
 		mem[i_address_b];
 
 	 generate
+	integer j;
     always @(posedge i_clk) begin
     	// read
 
     	// write
     	if (i_write_enable_b) begin
-    		for (int j=0;j<DATA_WIDTH/8;j=j+1) begin
+    		for (j=0;j<DATA_WIDTH/8;j=j+1) begin
     			mem[i_address_b][j*8+0] = i_byte_enable_b[j] ? i_write_data_b[j*8+0] : mem[i_address_b][j*8+0] ;
     			mem[i_address_b][j*8+1] = i_byte_enable_b[j] ? i_write_data_b[j*8+1] : mem[i_address_b][j*8+1] ;
     			mem[i_address_b][j*8+2] = i_byte_enable_b[j] ? i_write_data_b[j*8+2] : mem[i_address_b][j*8+2] ;
